@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class Navbar extends Component {
   render() {
     return (
-      <nav className="bg-primary navbar navbar-dark">
-        <a href="#" className="navbar-brand">
-          <i className={this.props.icon}></i> {this.props.title}
-        </a>
+      <nav className="bg-primary navbar navbar-dark ">
+        <div className="container">
+          <a href="#" className="navbar-brand  ">
+            <i className={this.props.icon}></i> {this.props.title}
+          </a>
+        </div>
       </nav>
     );
   }
@@ -14,6 +17,10 @@ export class Navbar extends Component {
 Navbar.defaultProps = {
   icon: "bi bi-github",
   title: "Github Finder",
+};
+Navbar.propTypes = {
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Navbar;
