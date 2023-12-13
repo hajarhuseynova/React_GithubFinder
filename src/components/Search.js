@@ -14,10 +14,14 @@ export class Search extends Component {
   };
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.searchUser(this.state.keyword);
-    this.setState({
-      keyword: "",
-    });
+    if (this.state.keyword === "") {
+      this.props.displayAlert("Something wrong!", "danger");
+    } else {
+      this.props.searchUser(this.state.keyword);
+      this.setState({
+        keyword: "",
+      });
+    }
   };
 
   render() {
@@ -36,7 +40,14 @@ export class Search extends Component {
             </button>
           </div>
         </form>
-        <button className="btn btn-outline-danger mt-2 block">Delete</button>
+        {this.props.showBtn && (
+          <button
+            onClick={this.props.clearResults}
+            className="btn btn-outline-danger mt-2 block"
+          >
+            Delete
+          </button>
+        )}
       </div>
     );
   }
