@@ -1,20 +1,21 @@
-import React, { Component } from "react";
 import User from "./User";
 import Loading from "./Loading";
+import React, { useContext } from "react";
+import { UsersContext } from "../contexts/UsersContext";
 
-export class UserList extends Component {
-  render() {
-    if (this.props.loading) {
-      return <Loading />;
-    }
-    return (
-      <div>
-        {this.props.users.map((user) => (
-          <User user={user} key={user.id} />
-        ))}
-      </div>
-    );
+const UserList = () => {
+  const { users, loading } = useContext(UsersContext);
+
+  if (loading) {
+    return <Loading />;
   }
-}
+  return (
+    <div className="container mt-3">
+      {users.map((user) => (
+        <User user={user} key={user.id} />
+      ))}
+    </div>
+  );
+};
 
 export default UserList;
